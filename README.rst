@@ -34,13 +34,11 @@ logocode
 ========
 
 
-    Add a short description here!
+A python package to cover functionalities of LoGoMOD
 
+To set up, cd into this directory and run
 
-A longer description of your project goes here...
-
-
-.. _pyscaffold-notes:
+pip install -e .
 
 Note
 ====
