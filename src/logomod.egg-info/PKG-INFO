@@ -1,3 +1,26 @@
+Metadata-Version: 2.4
+Name: logomod
+Version: 0.0.post1.dev3+gdd968c41a.d20251015
+Summary: A skeletal framework to model Australian policies at the local government level.
+Home-page: https://github.com/pyscaffold/pyscaffold/
+Author: Sreehari Pulickamadhom Sreedhar
+Author-email: orectique@gmail.com
+License: MIT
+Project-URL: Documentation, https://pyscaffold.org/
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Description-Content-Type: text/x-rst; charset=UTF-8
+License-File: LICENSE.txt
+Requires-Dist: importlib-metadata; python_version < "3.8"
+Requires-Dist: pandas
+Requires-Dist: numpy
+Provides-Extra: testing
+Requires-Dist: setuptools; extra == "testing"
+Requires-Dist: pytest; extra == "testing"
+Requires-Dist: pytest-cov; extra == "testing"
+Dynamic: license-file
+
 .. These are examples of badges you might want to add to your README:
    please update the URLs accordingly
 
