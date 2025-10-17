@@ -40,6 +40,10 @@ LoGoMOD
 
 This is a simple Python package that provides functionalities for running microsimulations calibrated at the local government level. It is designed to be flexible and extensible, allowing users to easily adapt it to their specific needs.
 
+LoGoMOD is a tool developed initially for internal use at the Australian Local Government Association (ALGA) to aid in the analyses of policies and trends at the local government area (LGA) level across Australia. 
+
+However, it is not a package or tool officially published by ALGA. It's provided as an open-source project to encourage collaboration and further development within the community.
+
 To set up, ``cd`` into the root directory of this project (assuming you forked or cloned it) and run
 
 .. code-block:: bash

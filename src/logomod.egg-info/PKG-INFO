@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: logomod
-Version: 0.0.post1.dev6+g2cfb80d5e.d20251017
+Version: 0.0.post1.dev9+g49ba24c3c.d20251017
 Summary: A skeletal framework to model Australian policies at the local government level.
 Home-page: https://github.com/pyscaffold/pyscaffold/
 Author: [Australian Local Government Association, Sreehari Pulickamadhom Sreedhar]
@@ -65,6 +65,10 @@ LoGoMOD
     - Users are advised to check the documentation and release notes for updates.
 
 This is a simple Python package that provides functionalities for running microsimulations calibrated at the local government level. It is designed to be flexible and extensible, allowing users to easily adapt it to their specific needs.
+
+LoGoMOD is a tool developed initially for internal use at the Australian Local Government Association (ALGA) to aid in the analyses of policies and trends at the local government area (LGA) level across Australia. 
+
+However, it is not a package or tool officially published by ALGA. It's provided as an open-source project to encourage collaboration and further development within the community.
 
 To set up, ``cd`` into the root directory of this project (assuming you forked or cloned it) and run
 

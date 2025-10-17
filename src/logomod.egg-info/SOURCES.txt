@@ -9,6 +9,9 @@ pyproject.toml
 setup.cfg
 setup.py
 tox.ini
+.github/workflows/static.yml
+dist/logomod-0.0.post1.dev6+g2cfb80d5e.d20251017-py3-none-any.whl
+dist/logomod-0.0.post1.dev6+g2cfb80d5e.d20251017.tar.gz
 docs/Makefile
 docs/authors.rst
 docs/changelog.rst
