@@ -1,5 +1,5 @@
 """
-    Setup file for logocode.
+    Setup file for logomod.
     Use setup.cfg to configure your project.
 
     This file was generated with PyScaffold 4.6.

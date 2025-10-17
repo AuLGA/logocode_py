@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Frequently Asked Questions &#8212; logomod 0.0.post1.dev4+gb6375b52d.d20251017 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=0ca6144b" />
+    <script src="_static/documentation_options.js?v=131560a0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Contributing" href="contributing.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="frequently-asked-questions">
+<h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Link to this heading">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>This project is still under active development.</p></li>
+<li><p>The codebase is being rewritten from a notebook-based internal use prototype to a more modular and extensible package.</p></li>
+<li><p>As such, the API and functionalities may change significantly in future releases.</p></li>
+<li><p>Users are advised to check the documentation and release notes for updates.</p></li>
+</ul>
+</div>
+<p>This section addresses some common questions about the LoGoMOD package.</p>
+<section id="architecture-build">
+<h2>1. Architecture &amp; Build<a class="headerlink" href="#architecture-build" title="Link to this heading">¶</a></h2>
+<p>The slides mention Python (Pandas, CuDF), DuckDB, GPU optional. Are there any additional libraries, services, or system dependencies not shown in the presentation?</p>
+<blockquote>
+<div><p>As the package depends on other libraries for a lot of its work, there will naturally be other dependencies.</p>
+</div></blockquote>
+<p>Is there a diagram or workflow map of how the modules interact (data flow from input → processing → output/front-end)? If not, can one be provided?</p>
+<blockquote>
+<div><p>Yes, this will be added into the workflow documentation.</p>
+</div></blockquote>
+</section>
+<section id="repository-version-control">
+<h2>2. Repository &amp; Version Control<a class="headerlink" href="#repository-version-control" title="Link to this heading">¶</a></h2>
+<p>We saw GitHub forking, branches, and pull requests outlined. Are there agreed coding standards or contribution guidelines beyond what’s in the slides?</p>
+<blockquote>
+<div><p>Standard Git rules apply. Since ALGA has no plans to continue maintaining the codebase, upstream contributions and downstream pulls on forks might be necessary.</p>
+</div></blockquote>
+<p>Are there automated tests or CI/CD in place?</p>
+<blockquote>
+<div><p>Not currently, but in the works.  The codebase is still being restructured. Once done, the aim is to have pipelines to test and publish PyPI/Conda packages.</p>
+</div></blockquote>
+</section>
+<section id="data-inputs">
+<h2>3. Data Inputs<a class="headerlink" href="#data-inputs" title="Link to this heading">¶</a></h2>
+<p>ABS Census Microdata Sample Files are listed. What other datasets are pre-configured or required?</p>
+<blockquote>
+<div><p>Other datasets at the core include TableBuilder margins and Center for Population projections. Given that custom behaviour needs to be implemented by users, the package is to be seen as a framework rather than a turnkey solution.</p>
+</div></blockquote>
+<p>What preprocessing scripts exist for raw data, and where are they located in the repo?</p>
+<blockquote>
+<div><p>All preprocessing needed is done within the package itself. There are no separate scripts.</p>
+</div></blockquote>
+<p>How often should core data sources be refreshed?</p>
+<blockquote>
+<div><p>This depends on the data source. For example, Census data is updated every 5 years, while population projections may be updated more frequently.</p>
+</div></blockquote>
+</section>
+<section id="model-functionality">
+<h2>4. Model Functionality<a class="headerlink" href="#model-functionality" title="Link to this heading">¶</a></h2>
+<p>Which modules are already complete and validated, and which are experimental or incomplete?</p>
+<blockquote>
+<div><p>There are no complete modules in the package at the moment. The codebase is being restructured from a prototype to a more modular package. Users are welcome to write their own modules and contribute back.</p>
+</div></blockquote>
+<p>What assumptions and calibration steps were applied at LGA level?</p>
+<blockquote>
+<div><p>Regression analysis was used to generate significant relationships between demographic variables at the LGA level. Calibration was done using known margins from TableBuilder.</p>
+<p>An extension of Cathal O’Donoghue’s Quota Sampling algorithm from his work on spatial microsimulation is used to sample individuals into the synthetic population.</p>
+</div></blockquote>
+<p>Are there adjustable parameters or configuration files for scenario testing (population growth, housing, disaster shocks)?</p>
+<blockquote>
+<div><p>Yes, users can define their own parameters and configurations for different scenarios. The package is designed to be flexible and extensible to accommodate various use cases.</p>
+</div></blockquote>
+</section>
+<section id="frontend-integration">
+<h2>5. Frontend &amp; Integration<a class="headerlink" href="#frontend-integration" title="Link to this heading">¶</a></h2>
+<p>Is there an existing user-facing frontend connected, or is everything run from Python notebooks/scripts?</p>
+<blockquote>
+<div><p>There is no frontend currently. The package is intended to be used as a library within Python scripts or notebooks. But, the output data can be easily integrated into dashboards or other visualization tools.</p>
+</div></blockquote>
+<p>If outputs are meant for dashboards, which formats are currently generated (CSV, DuckDB queries, APIs)?</p>
+<blockquote>
+<div><p>The synthetic population dataset will be output as a DuckDB store. However, different output writers will be implemented soon.</p>
+</div></blockquote>
+<p>Has LoGoMOD been integrated with visualisation tools (e.g., Power BI, Tableau)?</p>
+<blockquote>
+<div><p>Not yet, but since the output is in DuckDB format, it can be easily connected to various visualization tools that support DuckDB as a data source.</p>
+</div></blockquote>
+</section>
+<section id="operations-maintenance">
+<h2>6. Operations &amp; Maintenance<a class="headerlink" href="#operations-maintenance" title="Link to this heading">¶</a></h2>
+<p>What is the standard process to execute a model run end-to-end?</p>
+<blockquote>
+<div><p>The standard process involves setting up the model with the required data inputs, defining the parameters for the simulation, and then running the model to generate the synthetic population. Further analyses and modelling can be performed on the output data as needed.</p>
+</div></blockquote>
+<p>Approximate runtime with CPU vs GPU?</p>
+<blockquote>
+<div><p>This will depend on the size of the dataset and the complexity of the simulation. Generally, using a GPU can significantly speed up computations, especially for large datasets. However, specific benchmarks are not yet available as the package is still under development.</p>
+</div></blockquote>
+<p>Known failure points or bottlenecks?</p>
+<blockquote>
+<div><p>As the package is still being developed, there may be performance bottlenecks that have not yet been identified. Users are encouraged to report any issues they encounter.</p>
+</div></blockquote>
+<p>Are there monitoring/logging scripts?</p>
+<blockquote>
+<div><p>Not currently, but logging functionality will be added in future releases to help users monitor model runs and debug issues.</p>
+</div></blockquote>
+</section>
+<section id="governance-collaboration">
+<h2>7. Governance &amp; Collaboration<a class="headerlink" href="#governance-collaboration" title="Link to this heading">¶</a></h2>
+<p>Beyond “fork, branch, contribute back” outlined in the slides, are there rules for module ownership or review?</p>
+<blockquote>
+<div><p>There are no formal rules for module ownership or review at the moment. However, users are encouraged to follow best practices for code contributions, including code reviews and testing.</p>
+</div></blockquote>
+<p>Are there existing derivative models run by councils we should be aware of?</p>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</section>
+<section id="knowledge-transfer">
+<h2>8. Knowledge Transfer<a class="headerlink" href="#knowledge-transfer" title="Link to this heading">¶</a></h2>
+<p>Is there full documentation or a runbook beyond the PowerPoint and GitHub README?</p>
+<blockquote>
+<div><p>Yes, documentation is being developed and will be made available on the project’s GitHub repository.</p>
+</div></blockquote>
+<p>Are there worked examples of simulations (e.g., case studies or tutorials)?</p>
+<blockquote>
+<div><p>Not yet, but tutorials and case studies will be added to the documentation.</p>
+</div></blockquote>
+<p>Any undocumented scripts, credentials, or datasets tied to the developer’s account?</p>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</section>
+<section id="future-development-risks">
+<h2>9. Future Development &amp; Risks<a class="headerlink" href="#future-development-risks" title="Link to this heading">¶</a></h2>
+<p>What enhancements were planned but not started?</p>
+<blockquote>
+<div><p>There are plans to add more modules for different demographic dynamics, improve performance, and enhance the user experience. Specific enhancements will be determined based on user feedback and contributions.</p>
+</div></blockquote>
+<p>What gaps/limitations should we be aware of?</p>
+<blockquote>
+<div><p>Currently, the package may not fully support all demographic factors or complex interactions between variables. Users should be aware of these limitations when designing their simulations.</p>
+</div></blockquote>
+<p>What skills are essential to maintain (e.g., Python, GPU, microsimulation design, frontend dev)?</p>
+<blockquote>
+<div><p>Key skills include proficiency in Python, understanding of microsimulation design principles, and familiarity with data manipulation and analysis libraries. Knowledge of GPU programming may also be beneficial for optimizing performance.</p>
+</div></blockquote>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">logomod</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributions &amp; Help</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-build">1. Architecture &amp; Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#repository-version-control">2. Repository &amp; Version Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-inputs">3. Data Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-functionality">4. Model Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#frontend-integration">5. Frontend &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operations-maintenance">6. Operations &amp; Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#governance-collaboration">7. Governance &amp; Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#knowledge-transfer">8. Knowledge Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-development-risks">9. Future Development &amp; Risks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">Module Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="contributing.html" title="previous chapter">Contributing</a></li>
+      <li>Next: <a href="license.html" title="next chapter">License</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Sreehari Pulickamadhom Sreedhar.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/faqs.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
