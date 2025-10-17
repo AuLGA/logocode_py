@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: logomod
-Version: 0.0.post1.dev4+gb6375b52d.d20251017
+Version: 0.0.post1.dev6+g2cfb80d5e.d20251017
 Summary: A skeletal framework to model Australian policies at the local government level.
 Home-page: https://github.com/pyscaffold/pyscaffold/
 Author: [Australian Local Government Association, Sreehari Pulickamadhom Sreedhar]
@@ -174,7 +174,7 @@ If you are new to Python and microsimulations, here are some resources to get yo
 - https://quantecon.org/lectures/ --- QuantEcon Lectures on Python and Microsimulations
 - https://docs.python.org/3/tutorial/ --- Official Python Tutorial
 - https://realpython.com/ --- Real Python Tutorials
-- Ben Phillips and team (of ANU CSRM) has great research notes on and about using their microsimulation PolicyMod
+- Ben Phillips and team (of ANU CSRM) have great research notes on and about using their microsimulation PolicyMod
     - PolicyMod - https://polis.cass.anu.edu.au/research/publications/policymod-microsimulation-model-australian-tax-and-transfer-system-december
     - A Fairer Tax and Welfare System - https://polis.cass.anu.edu.au/files/docs/2025/6/ANU\_-_A_FAIRER_TAX_AND_WELFARE_SYSTEM.pdf
 

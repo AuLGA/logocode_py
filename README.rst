@@ -148,7 +148,7 @@ If you are new to Python and microsimulations, here are some resources to get yo
 - https://quantecon.org/lectures/ --- QuantEcon Lectures on Python and Microsimulations
 - https://docs.python.org/3/tutorial/ --- Official Python Tutorial
 - https://realpython.com/ --- Real Python Tutorials
-- Ben Phillips and team (of ANU CSRM) has great research notes on and about using their microsimulation PolicyMod
+- Ben Phillips and team (of ANU CSRM) have great research notes on and about using their microsimulation PolicyMod
     - PolicyMod - https://polis.cass.anu.edu.au/research/publications/policymod-microsimulation-model-australian-tax-and-transfer-system-december
     - A Fairer Tax and Welfare System - https://polis.cass.anu.edu.au/files/docs/2025/6/ANU\_-_A_FAIRER_TAX_AND_WELFARE_SYSTEM.pdf
 
