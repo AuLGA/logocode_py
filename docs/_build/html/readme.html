@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>LoGoMOD &#8212; logomod 0.0.post1.dev6+g2cfb80d5e.d20251017 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=0ca6144b" />
+    <script src="_static/documentation_options.js?v=d11a1d7e"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="logomod" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <span class="target" id="readme"></span><a class="reference external image-reference" href="https://pyscaffold.org/"><img alt="Project generated with PyScaffold" src="https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold" />
+</a>
+<section id="logomod">
+<h1>LoGoMOD<a class="headerlink" href="#logomod" title="Link to this heading">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>This project is still under active development.</p></li>
+<li><p>The codebase is being rewritten from a notebook-based internal use prototype to a more modular and extensible package.</p></li>
+<li><p>As such, the API and functionalities may change significantly in future releases.</p></li>
+<li><p>Users are advised to check the documentation and release notes for updates.</p></li>
+</ul>
+</div>
+<p>This is a simple Python package that provides functionalities for running microsimulations calibrated at the local government level. It is designed to be flexible and extensible, allowing users to easily adapt it to their specific needs.</p>
+<p>To set up, <code class="docutils literal notranslate"><span class="pre">cd</span></code> into the root directory of this project (assuming you forked or cloned it) and run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>In the future, the package may be available on PyPI and Conda-Forge repositories.</p>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h2>
+<p>This package is intended to be used as a library. Here is a simple example of how to use it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">logomod</span><span class="w"> </span><span class="kn">import</span> <span class="n">model</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+<span class="c1"># import other modules as needed</span>
+</pre></div>
+</div>
+<p>This creates a model instance from the <cite>model</cite> module. You can then use this instance to generate a synthetic population and perform various analyses.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a model instance</span>
+<span class="n">base_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">LoGoMOD</span><span class="p">(</span>
+<span class="n">sample_file_path</span> <span class="o">=</span> <span class="s2">&quot;../Data/Census Microdata&quot;</span><span class="p">,</span> <span class="c1"># Path to the decompressed folder of ABS Census Microdata Sample Files</span>
+<span class="n">family_margins_file_path</span> <span class="o">=</span> <span class="s2">&quot;../Data/Census Margins/Slide sampling/slide_margins.csv&quot;</span><span class="p">,</span> <span class="c1"># Path to the CSV file containing family margins</span>
+<span class="n">individual_margins_file_path</span> <span class="o">=</span> <span class="s2">&quot;../Data/Census Margins/Slide sampling/slide_margins_individuals.csv&quot;</span><span class="p">,</span> <span class="c1"># Path to the CSV file containing individual margins</span>
+<span class="n">output_dir</span> <span class="o">=</span> <span class="s2">&quot;../Data/Output&quot;</span><span class="p">,</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="n">start_year</span> <span class="o">=</span> <span class="mi">2025</span><span class="p">,</span>
+<span class="n">end_year</span> <span class="o">=</span> <span class="mi">2030</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>LoGoMOD, in its current state, requires the input of ABS Census Microdata Sample Files and TableBuilder margins, along with distributions for dynamics and population growth. Please ensure you have the appropriate data and permissions to use them.</p>
+<p>Your data directory could eventually look like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">└── Data</span>
+<span class="go">    ├── ACLD 2016-2021</span>
+<span class="go">    │   └── weighted_tenure_transitions.csv</span>
+<span class="go">    ├── ASGS</span>
+<span class="go">    │   └── LGA_RA_GCCSA.csv</span>
+<span class="go">    ├── Census Margins</span>
+<span class="go">    │   ├── Dynamics</span>
+<span class="go">    │   │   ├── dynamics_RA.csv</span>
+<span class="go">    │   │   └── dynamics_Tenure.csv</span>
+<span class="go">    │   └── Slide sampling</span>
+<span class="go">    │       ├── slide_margins_individuals.csv</span>
+<span class="go">    │       └── slide_margins.csv</span>
+<span class="go">    ├── Census Microdata</span>
+<span class="go">    │   ├── 2021 Census 5% basic microdata 080823.xlsx</span>
+<span class="go">    │   ├── CENSUS_2021_BASIC_dwelling.csv</span>
+<span class="go">    │   ├── CENSUS_2021_BASIC_family.csv</span>
+<span class="go">    │   └── CENSUS_2021_BASIC_person.csv</span>
+<span class="go">    ├── Output</span>
+<span class="go">    │   │   ├── logomod_2025_10_14-104912.duckdb</span>
+<span class="go">    │   │   ├── logomod_2025_10_14-112708.duckdb</span>
+<span class="go">    │   │   └── logomod_2025_10_14-112737.duckdb</span>
+<span class="go">    └── Population Projections</span>
+<span class="go">        └── projected_population_2022-2033.csv</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a synthetic population</span>
+<span class="n">synthetic_population</span> <span class="o">=</span> <span class="n">base_model</span><span class="o">.</span><span class="n">generate_synthetic_population</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will generate a synthetic population based on the provided sample and margins. The resulting synthetic population will be saved as a DuckDB database file in the specified output directory.</p>
+<p>The <cite>synthetic_population</cite> variable is a path (as a string) pointing to the generated DuckDB database file, in the format <cite>&lt;output_dir&gt;/logomod_&lt;timestamp&gt;.duckdb</cite>.</p>
+<p>This generated DuckDB database object can be queried using any data analysis, business intelligence, visualization, or modelling tool that supports DuckDB backends. For example, you can use the <cite>duckdb</cite> Python package to connect to the database to generate new variables, perform aggregations, and more.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect to DuckDB for querying and analysis</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">synthetic_population</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not everyone is comfortable working in Python code and testing things out using scripts or Jupyter notebooks.</p>
+<p>The plan is to eventually have a standalone command-line interface for those who would prefer to get out of code and into full fledged analytics tools as soon as possible.</p>
+<p>Something like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>logomod<span class="w"> </span>--sample-file-path<span class="w"> </span><span class="s2">&quot;../Data/Census Microdata&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--family-margins-file-path<span class="w"> </span><span class="s2">&quot;../Data/Census Margins/Slide sampling/slide_margins.csv&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--individual-margins-file-path<span class="w"> </span><span class="s2">&quot;../Data/Census Margins/Slide sampling/slide_margins_individuals.csv&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--dynamics-function<span class="w"> </span><span class="s2">&quot;random resampling&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--output-dir<span class="w"> </span><span class="s2">&quot;../Data/Output&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--start-year<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--end-year<span class="w"> </span><span class="m">2030</span>
+</pre></div>
+</div>
+<p>This would generate a fresh synthetic population stepped forward based on default parameters and assumptions and the specified dynamics functions.</p>
+</div>
+</section>
+<section id="for-python-newbies">
+<h2>For Python Newbies<a class="headerlink" href="#for-python-newbies" title="Link to this heading">¶</a></h2>
+<p>If you are new to Python and microsimulations, here are some resources to get you started:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://quantecon.org/lectures/">https://quantecon.org/lectures/</a> — QuantEcon Lectures on Python and Microsimulations</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/tutorial/">https://docs.python.org/3/tutorial/</a> — Official Python Tutorial</p></li>
+<li><p><a class="reference external" href="https://realpython.com/">https://realpython.com/</a> — Real Python Tutorials</p></li>
+<li><dl class="simple">
+<dt>Ben Phillips and team (of ANU CSRM) have great research notes on and about using their microsimulation PolicyMod</dt><dd><ul>
+<li><p>PolicyMod - <a class="reference external" href="https://polis.cass.anu.edu.au/research/publications/policymod-microsimulation-model-australian-tax-and-transfer-system-december">https://polis.cass.anu.edu.au/research/publications/policymod-microsimulation-model-australian-tax-and-transfer-system-december</a></p></li>
+<li><p>A Fairer Tax and Welfare System - <a class="reference external" href="https://polis.cass.anu.edu.au/files/docs/2025/6/ANU_-_A_FAIRER_TAX_AND_WELFARE_SYSTEM.pdf">https://polis.cass.anu.edu.au/files/docs/2025/6/ANU_-_A_FAIRER_TAX_AND_WELFARE_SYSTEM.pdf</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="note">
+<h2>Note<a class="headerlink" href="#note" title="Link to this heading">¶</a></h2>
+<p>This project has been set up using PyScaffold 4.6. For details and usage
+information on PyScaffold see <a class="reference external" href="https://pyscaffold.org/">https://pyscaffold.org/</a>.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">logomod</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#for-python-newbies">For Python Newbies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#note">Note</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributions &amp; Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faqs.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">Module Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">logomod</a></li>
+      <li>Next: <a href="contributing.html" title="next chapter">Contributing</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Sreehari Pulickamadhom Sreedhar.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/readme.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

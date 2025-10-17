@@ -1,46 +1,156 @@
 .. These are examples of badges you might want to add to your README:
    please update the URLs accordingly
 
-    .. image:: https://api.cirrus-ci.com/github/<USER>/logocode.svg?branch=main
+    .. image:: https://api.cirrus-ci.com/github/<USER>/logomod.svg?branch=main
         :alt: Built Status
-        :target: https://cirrus-ci.com/github/<USER>/logocode
-    .. image:: https://readthedocs.org/projects/logocode/badge/?version=latest
+        :target: https://cirrus-ci.com/github/<USER>/logomod
+    .. image:: https://readthedocs.org/projects/logomod/badge/?version=latest
         :alt: ReadTheDocs
-        :target: https://logocode.readthedocs.io/en/stable/
-    .. image:: https://img.shields.io/coveralls/github/<USER>/logocode/main.svg
+        :target: https://logomod.readthedocs.io/en/stable/
+    .. image:: https://img.shields.io/coveralls/github/<USER>/logomod/main.svg
         :alt: Coveralls
-        :target: https://coveralls.io/r/<USER>/logocode
-    .. image:: https://img.shields.io/pypi/v/logocode.svg
+        :target: https://coveralls.io/r/<USER>/logomod
+    .. image:: https://img.shields.io/pypi/v/logomod.svg
         :alt: PyPI-Server
-        :target: https://pypi.org/project/logocode/
-    .. image:: https://img.shields.io/conda/vn/conda-forge/logocode.svg
+        :target: https://pypi.org/project/logomod/
+    .. image:: https://img.shields.io/conda/vn/conda-forge/logomod.svg
         :alt: Conda-Forge
-        :target: https://anaconda.org/conda-forge/logocode
-    .. image:: https://pepy.tech/badge/logocode/month
+        :target: https://anaconda.org/conda-forge/logomod
+    .. image:: https://pepy.tech/badge/logomod/month
         :alt: Monthly Downloads
-        :target: https://pepy.tech/project/logocode
+        :target: https://pepy.tech/project/logomod
     .. image:: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter
         :alt: Twitter
-        :target: https://twitter.com/logocode
+        :target: https://twitter.com/logomod
 
 .. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
     :alt: Project generated with PyScaffold
     :target: https://pyscaffold.org/
 
-|
-
 ========
-logocode
+LoGoMOD
 ========
 
+.. warning::
 
-    Add a short description here!
+    - This project is still under active development. 
+    - The codebase is being rewritten from a notebook-based internal use prototype to a more modular and extensible package. 
+    - As such, the API and functionalities may change significantly in future releases. 
+    - Users are advised to check the documentation and release notes for updates.
 
+This is a simple Python package that provides functionalities for running microsimulations calibrated at the local government level. It is designed to be flexible and extensible, allowing users to easily adapt it to their specific needs.
 
-A longer description of your project goes here...
+To set up, ``cd`` into the root directory of this project (assuming you forked or cloned it) and run
 
+.. code-block:: bash
 
-.. _pyscaffold-notes:
+    pip install -e .
+
+In the future, the package may be available on PyPI and Conda-Forge repositories.
+
+Getting Started
+===============
+
+This package is intended to be used as a library. Here is a simple example of how to use it:
+
+.. code-block:: python
+
+    from logomod import model
+    import duckdb
+    # import other modules as needed
+
+This creates a model instance from the `model` module. You can then use this instance to generate a synthetic population and perform various analyses.
+
+.. code-block:: python
+
+    # Create a model instance
+    base_model = model.LoGoMOD(
+    sample_file_path = "../Data/Census Microdata", # Path to the decompressed folder of ABS Census Microdata Sample Files
+    family_margins_file_path = "../Data/Census Margins/Slide sampling/slide_margins.csv", # Path to the CSV file containing family margins
+    individual_margins_file_path = "../Data/Census Margins/Slide sampling/slide_margins_individuals.csv", # Path to the CSV file containing individual margins
+    output_dir = "../Data/Output",
+    output_file = None,
+    start_year = 2025,
+    end_year = 2030
+    )
+
+LoGoMOD, in its current state, requires the input of ABS Census Microdata Sample Files and TableBuilder margins, along with distributions for dynamics and population growth. Please ensure you have the appropriate data and permissions to use them.
+
+Your data directory could eventually look like this:
+
+.. code-block:: console
+
+    └── Data
+        ├── ACLD 2016-2021
+        │   └── weighted_tenure_transitions.csv
+        ├── ASGS
+        │   └── LGA_RA_GCCSA.csv
+        ├── Census Margins
+        │   ├── Dynamics
+        │   │   ├── dynamics_RA.csv
+        │   │   └── dynamics_Tenure.csv
+        │   └── Slide sampling
+        │       ├── slide_margins_individuals.csv
+        │       └── slide_margins.csv
+        ├── Census Microdata
+        │   ├── 2021 Census 5% basic microdata 080823.xlsx
+        │   ├── CENSUS_2021_BASIC_dwelling.csv
+        │   ├── CENSUS_2021_BASIC_family.csv
+        │   └── CENSUS_2021_BASIC_person.csv
+        ├── Output
+        │   │   ├── logomod_2025_10_14-104912.duckdb
+        │   │   ├── logomod_2025_10_14-112708.duckdb
+        │   │   └── logomod_2025_10_14-112737.duckdb
+        └── Population Projections
+            └── projected_population_2022-2033.csv
+
+.. code-block:: python
+
+    # Generate a synthetic population
+    synthetic_population = base_model.generate_synthetic_population()
+
+This will generate a synthetic population based on the provided sample and margins. The resulting synthetic population will be saved as a DuckDB database file in the specified output directory.
+
+The `synthetic_population` variable is a path (as a string) pointing to the generated DuckDB database file, in the format `<output_dir>/logomod_<timestamp>.duckdb`.
+
+This generated DuckDB database object can be queried using any data analysis, business intelligence, visualization, or modelling tool that supports DuckDB backends. For example, you can use the `duckdb` Python package to connect to the database to generate new variables, perform aggregations, and more.
+
+.. code-block:: python
+
+    # Connect to DuckDB for querying and analysis
+    con = duckdb.connect(synthetic_population)
+
+.. Note::
+
+    Not everyone is comfortable working in Python code and testing things out using scripts or Jupyter notebooks. 
+
+    The plan is to eventually have a standalone command-line interface for those who would prefer to get out of code and into full fledged analytics tools as soon as possible. 
+
+    Something like:
+
+    .. code-block:: bash
+
+        logomod --sample-file-path "../Data/Census Microdata" \
+                --family-margins-file-path "../Data/Census Margins/Slide sampling/slide_margins.csv" \
+                --individual-margins-file-path "../Data/Census Margins/Slide sampling/slide_margins_individuals.csv" \
+                --dynamics-function "random resampling" \
+                --output-dir "../Data/Output" \
+                --start-year 2025 \
+                --end-year 2030
+    
+    This would generate a fresh synthetic population stepped forward based on default parameters and assumptions and the specified dynamics functions.
+
+For Python Newbies
+===================
+
+If you are new to Python and microsimulations, here are some resources to get you started:
+
+- https://quantecon.org/lectures/ --- QuantEcon Lectures on Python and Microsimulations
+- https://docs.python.org/3/tutorial/ --- Official Python Tutorial
+- https://realpython.com/ --- Real Python Tutorials
+- Ben Phillips and team (of ANU CSRM) have great research notes on and about using their microsimulation PolicyMod
+    - PolicyMod - https://polis.cass.anu.edu.au/research/publications/policymod-microsimulation-model-australian-tax-and-transfer-system-december
+    - A Fairer Tax and Welfare System - https://polis.cass.anu.edu.au/files/docs/2025/6/ANU\_-_A_FAIRER_TAX_AND_WELFARE_SYSTEM.pdf
 
 Note
 ====

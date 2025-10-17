@@ -1,5 +1,5 @@
 Metadata-Version: 2.4
-Name: logocode
+Name: logomod
 Version: 0.0.post1.dev1+g8e14d5c3f
 Summary: Add a short description here!
 Home-page: https://github.com/pyscaffold/pyscaffold/
@@ -22,27 +22,27 @@ Dynamic: license-file
 .. These are examples of badges you might want to add to your README:
    please update the URLs accordingly
 
-    .. image:: https://api.cirrus-ci.com/github/<USER>/logocode.svg?branch=main
+    .. image:: https://api.cirrus-ci.com/github/<USER>/logomod.svg?branch=main
         :alt: Built Status
-        :target: https://cirrus-ci.com/github/<USER>/logocode
-    .. image:: https://readthedocs.org/projects/logocode/badge/?version=latest
+        :target: https://cirrus-ci.com/github/<USER>/logomod
+    .. image:: https://readthedocs.org/projects/logomod/badge/?version=latest
         :alt: ReadTheDocs
-        :target: https://logocode.readthedocs.io/en/stable/
-    .. image:: https://img.shields.io/coveralls/github/<USER>/logocode/main.svg
+        :target: https://logomod.readthedocs.io/en/stable/
+    .. image:: https://img.shields.io/coveralls/github/<USER>/logomod/main.svg
         :alt: Coveralls
-        :target: https://coveralls.io/r/<USER>/logocode
-    .. image:: https://img.shields.io/pypi/v/logocode.svg
+        :target: https://coveralls.io/r/<USER>/logomod
+    .. image:: https://img.shields.io/pypi/v/logomod.svg
         :alt: PyPI-Server
-        :target: https://pypi.org/project/logocode/
-    .. image:: https://img.shields.io/conda/vn/conda-forge/logocode.svg
+        :target: https://pypi.org/project/logomod/
+    .. image:: https://img.shields.io/conda/vn/conda-forge/logomod.svg
         :alt: Conda-Forge
-        :target: https://anaconda.org/conda-forge/logocode
-    .. image:: https://pepy.tech/badge/logocode/month
+        :target: https://anaconda.org/conda-forge/logomod
+    .. image:: https://pepy.tech/badge/logomod/month
         :alt: Monthly Downloads
-        :target: https://pepy.tech/project/logocode
+        :target: https://pepy.tech/project/logomod
     .. image:: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter
         :alt: Twitter
-        :target: https://twitter.com/logocode
+        :target: https://twitter.com/logomod
 
 .. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
     :alt: Project generated with PyScaffold
@@ -51,7 +51,7 @@ Dynamic: license-file
 |
 
 ========
-logocode
+logomod
 ========
 
 
